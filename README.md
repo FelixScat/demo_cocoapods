@@ -52,6 +52,45 @@ Select gem to uninstall:
 
 我们选择想要卸载的版本的序号就好了 。
 
+### 使用rvm管理ruby环境
+
+有时我们需要不同的ruby环境，而且不想更改系统自带的时候可以考虑使用rvm管理本地的ruby版本
+
+```sh
+\curl -sSL https://get.rvm.io | bash -s stable 
+```
+
+查看可用的ruby版本
+
+```sh
+rvm list known
+```
+
+使用某个制定版本作为默认的ruby版本
+
+```
+rvm use 2.6.3 --default
+```
+
+### 安装和使用bundle
+
+```sh
+gem install bundler
+```
+
+然后在工程目录下创建Gemfile
+
+```ruby
+source 'https://rubygems.org'
+gem "cocoapods", "1.7.5"
+```
+
+再次使用的时候就可以使用以下方式进行包更新操作了，这样在我们同一ruby环境下也可以使用不同版本的pod
+
+```sh
+bundle exec pod install 
+```
+
 ### 查看某个SDK的详细信息
 
 cocoapods支持我们去查找想要使用的仓库 , 比如我们想查找ReactoveObjC这个库
@@ -243,8 +282,6 @@ TODO: Add long description of the pod here.
 end
 ```
 
-<br>
-
 这里的配置项就是生成pod需要配置的大部分选项了 ，简单介绍一下
 
 - name pod名称
@@ -303,6 +340,77 @@ cocoapod可以自动帮我们完成这件事情
 pod repo push xxx-cocoapods-spec TDFOpenShopSDK.podspec --sources=git@git.xxx.com:ios/cocoapods-spec.git --allow-warnings --use-libraries --verbose
 ```
 
-### 总结
+## 其他
 
-Cocoapods极大方便了我们管理外部SDK和内部模块化解耦，用好这个管理工具无疑会为我们的工作效率带来巨大提升。
+### 缓存
+
+删除指定Pod的缓存
+
+```
+ pod cache clean [NAME]
+```
+
+删除全部缓存
+
+```
+ pod cache clean --all
+```
+
+### 卸载Pod
+
+```sh
+pod deintegrate
+```
+
+### 查看环境
+
+```
+pod env 
+```
+
+可以看到Git，ruby，Xcode版本等信息
+
+~~~sh
+
+### Stack
+
+```
+   CocoaPods : 1.7.5
+        Ruby : ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-darwin18]
+    RubyGems : 3.0.4
+        Host : Mac OS X 10.14.6 (18G87)
+       Xcode : 10.3 (10G8)
+         Git : git version 2.20.1 (Apple Git-117)
+Ruby lib dir : /Users/felix/.rvm/rubies/ruby-2.6.3/lib
+Repositories : 2dfire-cocoapods-spec - git@git.2dfire.net:ios/cocoapods-spec.git @ cfd5c16d38593af16fdaa4bf1bebcf47f14b801d
+               2dfire-cocoapods-spec-binary - git@git.2dfire.net:ios/cocoapods-spec-binary.git @ d07163e6b83c0fbfc71fe43a68dd2fce5f51d2b9
+               2dfire-ios-cocoapods-spec - http://git.2dfire.net/ios/cocoapods-spec @ cfd5c16d38593af16fdaa4bf1bebcf47f14b801d
+               master - https://github.com/CocoaPods/Specs.git @ f21043d7a7fd59154e6cae2ef819d725de394cfa
+```
+
+### Installation Source
+
+```
+Executable Path: /Users/felix/.rvm/gems/ruby-2.6.3/bin/pod
+```
+
+### Plugins
+
+```
+cocoapods-deintegrate : 1.0.4
+cocoapods-plugins     : 1.0.0
+cocoapods-search      : 1.0.0
+cocoapods-stats       : 1.1.0
+cocoapods-trunk       : 1.3.1
+cocoapods-try         : 1.1.0
+```
+~~~
+
+### 尝试Pod
+
+也就是预览模式，在有多个实例工程可用的时候会让用户选择预览哪一个
+
+```
+pod try YYModel
+```
+

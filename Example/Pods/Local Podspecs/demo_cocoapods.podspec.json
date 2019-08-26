@@ -3,20 +3,25 @@
   "version": "0.1.0",
   "summary": "A short description of demo_cocoapods.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/doubanjiang/demo_cocoapods",
+  "homepage": "https://github.com/Felix/demo_cocoapods",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "doubanjiang": "doubanjiang@2dfire.com"
+    "Felix": "zyhzhangyunhao@gmail.com"
   },
   "source": {
-    "git": "https://github.com/doubanjiang/demo_cocoapods.git",
+    "git": "https://github.com/Felix/demo_cocoapods.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "demo_cocoapods/Classes/**/*"
+  "source_files": "demo_cocoapods/Classes/**/*",
+  "dependencies": {
+    "AFNetworking": [
+      "~> 2.3"
+    ]
+  }
 }
