@@ -414,3 +414,57 @@ cocoapods-try         : 1.1.0
 pod try YYModel
 ```
 
+### 将你的工程打包为framework
+
+需要用到 **cocoapods-packager**
+
+```
+gem install cocoapods-packager
+```
+
+```
+pod package XXX.podspec --force --dynamic --no-mangle --spec-sources=https://github.com/CocoaPods/Specs.git
+```
+
+具体参数解释
+
+```
+Usage:
+
+    $ pod package NAME [SOURCE]
+
+      Package a podspec into a static library.
+
+Options:
+
+    --force                                                         Overwrite existing
+                                                                    files.
+    --no-mangle                                                     Do not mangle
+                                                                    symbols of
+                                                                    depedendant Pods.
+    --embedded                                                      Generate embedded
+                                                                    frameworks.
+    --library                                                       Generate static
+                                                                    libraries.
+    --dynamic                                                       Generate dynamic
+                                                                    framework.
+    --bundle-identifier                                             Bundle identifier
+                                                                    for dynamic
+                                                                    framework
+    --exclude-deps                                                  Exclude symbols
+                                                                    from dependencies.
+    --configuration                                                 Build the
+                                                                    specified
+                                                                    configuration
+                                                                    (e.g. Debug).
+                                                                    Defaults to
+                                                                    Release
+    --subspecs                                                      Only include the
+                                                                    given subspecs
+    --spec-sources=private,https://github.com/CocoaPods/Specs.git   The sources to
+                                                                    pull dependant
+                                                                    pods from
+                                                                    (defaults to
+                                                                    https://github.com/CocoaPods/Specs.git)
+```
+
